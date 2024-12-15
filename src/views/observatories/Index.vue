@@ -101,6 +101,8 @@
     </v-row>
 
   </v-container>
+
+  
   <v-container v-else class="d-flex flex-column align-center justify-center" style="height:600px;">
     <!-- <v-row> -->
     <div class="mb-3">
@@ -272,9 +274,7 @@ const observatory_rows = computed(()=>{
 })
 
 
-// const range= (n) =>{
-//       return Array.from({ length: n }, (_, index) => index);
-// }
+
 
 
 const on_logout_click = async ()=> {
@@ -289,6 +289,8 @@ const on_logout_click = async ()=> {
   user.value=initial_user
   observatories.value=[]
 }
+
+
 const on_auth_click = async () =>{
   // console.log("SEND ",username.value, password.value)
   try {
@@ -375,6 +377,7 @@ const get_observatories = async ()=>{
 
         const observatories_url = `${protocol}://${host}${port}/observatories`
         const obs = await fetch(observatories_url,{"method":"GET","headers":{"Content-Type":"application/json"}}).then(x=>x.json());
+        
         return obs
       // return 
       }catch (error) {

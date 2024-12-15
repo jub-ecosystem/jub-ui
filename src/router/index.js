@@ -71,9 +71,9 @@ const router = createRouter({
       component: () => import('../views/ocas/OCA.vue')
     },
     {
-      path: '/oca-veracruz',
-      name: 'oca-veracruz',
-      component: () => import('../views/ocas/OCA_veracruz.vue')
+      path: '/oca-rnc',
+      name: 'oca-rnc',
+      component: () => import('../views/ocas/OCA_RNC.vue')
     },
     {
       path:'/observatories/',
@@ -99,7 +99,17 @@ const router = createRouter({
       path:'/mictlanx',
       name:"mictlanx-index",
       component: ()=>import("../views/mictlanx/Index.vue")
-    }
+    }, 
+    {
+      path:"/oca/v2",
+      name:"ocav2",
+      component: ()=>import("../views/observatories/v2/Index.vue")
+    },
+    {
+      path:"/oca/panels/:observatory_id",
+      name:"oca_panels",
+      component: ()=>import("../views/observatories/v2/Panels.vue")
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     // always scroll to top
