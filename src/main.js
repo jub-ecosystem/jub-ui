@@ -1,18 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import Section from "./components/Section.vue";
-import PlatformsNav from "./components/PlatformsNav.vue";
-import FeatureBox from "./components/FeatureBox.vue";
-import Footer from "./components/Footer.vue";
-import Card from "./components/Card.vue";
-import PortionSection from "./components/PortionSection.vue";
-import IconCard from "./components/IconCard.vue"
 import Button from "./components/Button.vue";
-import ImageBanner from './components/ImageBanner.vue';
-import ContactCard from "./components/ContactCard.vue";
-import Separator from './components/Separator.vue';
-import SimpleSection from './components/SimpleSection.vue';
-import ListTable from './components/ListTable.vue'
 import Loader from './components/Loader.vue'
 import { VueStars } from "vue-stars"
 import 'vuetify/styles'
@@ -100,19 +88,19 @@ app.use(router);
 // app.use(VueGlide)
 //  Component registration
 app.component("vue-stars", VueStars)
-app.component("Section",Section);
-app.component("PlatformsNav",PlatformsNav);
-app.component("FeatureBox",FeatureBox);
-app.component("Footer",Footer);
-app.component("Card",Card);
-app.component("PortionSection",PortionSection);
-app.component("IconCard",IconCard);
+// app.component("Section",Section);
+// app.component("PlatformsNav",PlatformsNav);
+// app.component("FeatureBox",FeatureBox);
+// app.component("Footer",Footer);
+// app.component("Card",Card);
+// app.component("PortionSection",PortionSection);
+// app.component("IconCard",IconCard);
 app.component("Button",Button);
-app.component("ImageBanenr",ImageBanner);
-app.component("ContactCard",ContactCard);
-app.component("Separator",Separator);
-app.component("SimpleSection",SimpleSection);
-app.component("ListTable",ListTable)
+// app.component("ImageBanenr",ImageBanner);
+// app.component("ContactCard",ContactCard);
+// app.component("Separator",Separator);
+// app.component("SimpleSection",SimpleSection);
+// app.component("ListTable",ListTable)
 app.component("Loader",Loader)
 // app.component("VNumberInput",VNumberInput)
 app.mount('#app')

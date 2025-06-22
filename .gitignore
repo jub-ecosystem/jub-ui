@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+jub.tamps.cinvestav.mx
 *.tar
 *.tar.lz4
 *.lz4
