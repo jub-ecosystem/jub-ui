@@ -1,8 +1,5 @@
 <template>
  <v-layout class="rounded rounded-md">
-    <!-- <v-app-bar title="Observatorios"></v-app-bar> -->
-    
-
 
     <v-app-bar :elevation="9" title="Observatorios">
      <template v-slot:prepend>

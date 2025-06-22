@@ -5,7 +5,7 @@
     <div class="footer-wrapper"> 
         <!-- <div class="footer__header"></div> -->
         <div class="footer">
-            <img @load="on_load" class="mb--md" src="/images/muyal/muyal-black.png">
+            <!-- <img @load="on_load" class="mb--md" src="/images/muyal/muyal-black.png"> -->
             <p :class="{['text-size--'+text_size]:true,'text-align--justify':true}"> Contáctanos a través de nuestros diferentes canales y conoce más sobre la Plataforma tecnológica para la gestión, aseguramiento, intercambio y preservación de grandes volúmenes de datos en salud y construcción de un repositorio nacional de servicios de análisis de datos de salud.</p>
             
             <div class="footer__icons mb--md">
@@ -15,14 +15,10 @@
                     <!-- </div>  -->
                 </a>
                 <a class="flex justify-content--center align-items--center circle" href="#">
-                    <!-- <div > -->
                         <img @load="on_load" src="/images/icons/instagram-glyph-1.svg">
-                    <!-- </div> -->
                 </a>
                 <a class="flex justify-content--center align-items--center circle" href="#">
-                    <!-- <div> -->
                         <img @load="on_load" src="/images/icons/twitter-6.svg">
-                    <!-- </div> -->
                 </a>
             </div>
             <p class="footer__copyright">© Copyright 2020 - E-Salud by Cinvestav Tamaulipas</p>
