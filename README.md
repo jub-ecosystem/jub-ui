@@ -58,7 +58,7 @@ This subsection describes the folder structure of the web applications, the foll
 ## Deployment
 1.  Build the docker image using the following command:
 ``` sh
-docker build -f ./Dockerfile -t muyal-ui .
+docker build -f ./Dockerfile -t jub-ui .
 ```
 2. Run the docker container using the created docker image:
 ``` sh
