@@ -4,7 +4,7 @@
       <template v-slot:prepend>
         <v-img
           @click="router.push('/observatories')"
-          src="/images/oca_2.png"
+          src="/images/oca_2.jpg"
           alt="Logo"
           width="50"
           class="mr-1 ml-4 clickable"

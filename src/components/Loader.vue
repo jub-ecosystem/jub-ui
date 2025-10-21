@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-content--center align-items--center loader flex-direction--column">
-        <img  width="300" src="/images/oca_2.png" alt="" class="mb--md loader__img">
+        <img  width="300" src="/images/oca_2.jpg" alt="" class="mb--md loader__img">
         <p class="loader__text text-size--md">Cargando...</p>
     </div>
 </template>
