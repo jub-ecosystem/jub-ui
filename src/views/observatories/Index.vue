@@ -208,25 +208,24 @@ const xolo_loading = ref(false)
 const xolo_dialog = ref(false)
 
 
-const env = import.meta.env.VITE_APP_OCA_ENV
+const env       = import.meta.env.VITE_APP_OCA_ENV
 const xolo_port = env == "dev" ? `:${import.meta.env.VITE_APP_XOLO_API_PORT}` : ""
 const xolo_host = env == "dev" ? "localhost" : import.meta.env.VITE_APP_XOLO_API_IP_ADDR
-const port = env == "dev" ? `:${import.meta.env.VITE_APP_OCA_API_PORT}` : ""
-const host = env == "dev" ? "localhost" : import.meta.env.VITE_APP_OCA_API_IP_ADDR
-const protocol = env =="dev" ? "http" : "https"
+const port      = env == "dev" ? `:${import.meta.env.VITE_APP_OCA_API_PORT}` : ""
+const host      = env == "dev" ? "localhost" : import.meta.env.VITE_APP_OCA_API_IP_ADDR
+const protocol  = env == "dev" ? "http" : "https"
       // / const host = "localhost"
       // const port = 5000
 const max_columns = 3
 const observatory_rows = computed(()=>{
   const n = observatories.value.length
-  console.log("N",n,"COMPUTED_OBS",observatories.value)
+  // console.log("N",n,"COMPUTED_OBS",observatories.value)
   if (n>0 ){
     const max_rows = Math.ceil(n/max_columns)
-    console.log("MAX_WORS",max_rows)
+    // console.log("MAX_WORS",max_rows)
     if (max_rows <= 1) {
        return [ 
         observatories.value.map(x=>{
-          console.log("OBS",x)
           const levels = x["catalogs"].length
           return { 
             "key":x["obid"],
@@ -291,7 +290,6 @@ const on_logout_click = async ()=> {
 const on_auth_click = async () =>{
   // console.log("SEND ",username.value, password.value)
   try {
-    console.log("ON_AUTH_CLICK")
     xolo_loading.value=true
     const body = JSON.stringify(
       {
@@ -312,7 +310,6 @@ const on_auth_click = async () =>{
 
     // }
     const data = await response.json()
-    // console.log("RESPPOONSE",response)
 
     localStorage.setItem("user.username",data["username"] ?? "guest")
     localStorage.setItem("user.first_name",data["first_name"] ?? "Guest" )
@@ -321,29 +318,23 @@ const on_auth_click = async () =>{
     localStorage.setItem("user.profile_photo",data["profile_photo"] ?? "https://www.eldersinsurance.com.au/images/person1.png?width=368&height=278&crop=1")
     localStorage.setItem("access_token",data["access_token"] ?? "ACCESS_TOKEN")
     localStorage.setItem("secret",data["temporal_secret"] ?? "SECRET")
-
+    auth.value         = true
+    xolo_loading.value = false
+    xolo_dialog.value  = false;
+    user.value         = data
+    // It must show some notification. for now it is not important
     let obs = await get_observatories()
     observatories.value= obs
-
-    auth.value=true
-    xolo_loading.value=false
-    xolo_dialog.value=false;
-    user.value = data
   } catch (error) {
     alert("Xolo: Incorrect username or password - UNAUTHORIZED")
-    xolo_loading.value=false
-    user.value=initial_user
-    auth.value=false
+    xolo_loading.value = false
+    user.value         = initial_user
+    auth.value         = false
   }
-    // const username_predicate = username.length <= 0 || username=="USERNAME" ||
-    // if ()  {
-        // router.push("/observatories")
-        // xolo_dialog.value=true
-        // auth.value=false
-        // user.value=initial_user
-    // }
-  // console.log("REPSONSE",response)
 }
+
+
+
 const on_login_click = ()=>{
   xolo_dialog.value = !xolo_dialog.value
 }
@@ -355,7 +346,6 @@ const on_description_click = ()=>{
     }
 }
 const on_observatory_click = (o)=>{
-    console.log("BLCIK",o)
     router.push(`/observatories/${o["key"]}`)
 }
 
@@ -373,8 +363,12 @@ const get_observatories = async ()=>{
 
 
         const observatories_url = `${protocol}://${host}${port}/observatories`
-        const obs = await fetch(observatories_url,{"method":"GET","headers":{"Content-Type":"application/json"}}).then(x=>x.json());
+        const obs = await fetch(observatories_url,{
+          "credentials":"include",
+          "method":"GET","headers":{"Content-Type":"application/json"}
+        }).then(x=>x.json());
         
+        console.log("OBSERVATORIES",obs)
         return obs
       // return 
       }catch (error) {
@@ -400,13 +394,12 @@ onBeforeMount(async ()=>{
     })
     if (verify_response.status != 204 || access_token.length <=0 || access_token == "ACCESS_TOKEN" | secret.length <= 0 || secret=="SECRET"){
       console.error("Xolo: 403 UNAUTHORIZED")
-      auth.value=false
-      xolo_dialog.value=true
+      auth.value          = false
+      xolo_dialog.value   = true
       observatories.value = []
       return
     }else{
       let obs = await get_observatories()
-      console.log("OBNSS",obs)
       observatories.value= obs
       is_loading.value=false
     }
