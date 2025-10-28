@@ -57,6 +57,113 @@ This subsection describes the folder structure of the web applications, the foll
 	- views: this folder contain all the view components (pages).
 
 
+
+# Xolo User Management Guide
+
+This guide provides step-by-step instructions to create and manage users in **Xolo**, including user creation, scope assignment, and license generation.
+
+
+
+---
+
+## 👤 1. Create a User
+
+⚠️ Warning: Role-Username Consistency Required for mictlanx-sync
+
+For the proper functioning of mictlanx-sync, it is **mandatory** that the "role" attribute in the user creation payload must match the "username" value exactly. This means, for example, if "username" is "guest", then "role" must also be "guest".
+
+**Endpoint:**
+
+```
+POST http://<xolo-hostname>:<xolo-port>/api/v4/users
+```
+
+**Request Body:**
+
+```json
+{
+  "username": "guest",
+  "first_name": "Ignacio",
+  "last_name": "Castillo",
+  "email": "jcastillo@cinvestav.mx",
+  "password": "guestguest",
+  "profile": "",
+  "role": "guest"
+}
+```
+
+---
+
+## 🌐 2. Create a Scope
+
+**Endpoint:**
+
+```
+POST http://<xolo-hostname>:<xolo-port>/api/v4/scopes
+```
+
+
+**Request Body:**
+
+```json
+{
+  "name": "imss"
+}
+```
+
+---
+
+## 🔗 3. Assign Scope to User
+
+**Endpoint:**
+
+```
+POST http://<xolo-hostname>:<xolo-port>/api/v4/scopes/assign
+```
+
+**Request Body:**
+
+```json
+{
+  "name": "imss",
+  "username": "guest"
+}
+```
+
+**Header:**
+
+```
+Secret: <your-secret>
+```
+
+---
+
+## 🔒 4. Create and Assign a License
+
+**Endpoint:**
+
+```
+POST http://<xolo-hostname>:<xolo-port>/api/v4/licenses/
+```
+
+**Request Body:**
+
+```json
+{
+  "username": "guest",
+  "scope": "imss",
+  "expires_in": "24h",
+  "force": true
+}
+```
+
+**Header:**
+
+```
+Secret: <your-secret>
+```
+
+
 ## Deployment
 1.  Build the docker image using the following command:
 	``` sh
