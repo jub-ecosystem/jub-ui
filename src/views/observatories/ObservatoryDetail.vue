@@ -3,7 +3,7 @@
     <!-- <v-app-bar title="Observatorios"></v-app-bar> -->
     <v-app-bar :elevation="1" :title="observatory['title']">
       <template v-slot:prepend>
-        <router-link to="/observatories">
+        <router-link to="/">
           <v-btn icon="mdi-arrow-left"></v-btn>
         </router-link>
       </template>
