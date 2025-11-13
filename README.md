@@ -17,7 +17,16 @@ npm i
 
 ### Compile and Hot-Reload for Development
 
-Before you must deploy Jub API + Xolo (adjust the `.env` if you need)
+Before running the UI, you must deploy Jub API + Xolo (adjust the `.env` if you need).
+
+**Note:** The first time you set up the environment, create the Docker volume for Xolo’s database:
+> ```sh
+> docker volume create xolo-db
+> ```
+This step is **only required once**. If the volume already exists, you can skip it.
+
+Then run the backend deployment script:
+
 ```sh
 chmod +x ./deploy.sh && ./deploy.sh
 ```
@@ -56,6 +65,28 @@ This subsection describes the folder structure of the web applications, the foll
 	- stores: This folder is temporaly  empty (because we dont need any state management)
 	- views: this folder contain all the view components (pages).
 
+# 👤 Xolo Scope Management (One-Time Setup)
+
+The **scope** defines a logical access boundary in Xolo.
+This step **must be performed only once**, immediately after deploying Xolo and **before creating any users or licenses**.
+
+Use any HTTP client (Postman, httpie, Insomnia, etc.) to make the request to the API endpoint:
+
+```
+POST http://<xolo_host>:<xolo_port>/api/v4/scopes
+```
+
+Example request body:
+
+```json
+{
+  "name": "xolo"
+}
+```
+
+> Replace `<xolo_host>` and `<xolo_port>` with the host and port where the Xolo service is running.
+
+Once the scope is created, you can proceed with user creation.
 
 
 # 👤 Xolo User Management Guide

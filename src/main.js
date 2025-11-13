@@ -9,7 +9,7 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
-import { VNumberInput } from 'vuetify/labs/VNumberInput'
+
 
 import App from './App.vue';
 import router from './router';
@@ -34,7 +34,6 @@ const app = createApp(App);
 
 const vuetify = createVuetify({
   components:{
-    VNumberInput,
     //  VDataTable,
     // VDataTableServer,
     // VDataTableVirtual,
